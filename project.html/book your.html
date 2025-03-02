@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Booking</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f1e8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .booking-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .booking-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('islamic-pattern.png') repeat; /* Add an Islamic pattern image */
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #4CAF50;
+      margin-bottom: 20px;
+      font-family: 'Amiri', serif; /* Islamic-style font */
+    }
+
+    h2 {
+      font-size: 1.8em;
+      color: #4CAF50;
+      margin-bottom: 15px;
+      font-family: 'Amiri', serif;
+    }
+
+    .event-types {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .event-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #e0e0e0;
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .event-btn.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .event-btn:hover {
+      background-color: #45a049;
+    }
+
+    .event-section {
+      display: none;
+      margin: 20px 0;
+    }
+
+    .event-section.active {
+      display: block;
+    }
+
+    .calendar input {
+      padding: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .price {
+      font-size: 1.2em;
+      color: #4CAF50;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    #booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    #booking-form input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .payment-options {
+      margin: 10px 0;
+    }
+
+    .payment-options label {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    #confirmation-message {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    #confirmation-message button {
+      margin: 5px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    #confirmation-message button:hover {
+      opacity: 0.8;
+    }
+
+    /* Islamic Calligraphy Decoration */
+    .calligraphy {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 2em;
+      color: #4CAF50;
+      font-family: 'Amiri', serif;
+    }
+    .homepage-button {
+            margin-top: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        .homepage-button:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+  </style>
+  <!-- Google Fonts for Islamic-style fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="booking-container">
+    <div class="calligraphy">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <h1>Select Your Event Type</h1>
+    
+    <div class="event-types">
+      <button class="event-btn active" data-event="wedding">Wedding</button>
+      <button class="event-btn" data-event="haldi">Haldi</button>
+      <button class="event-btn" data-event="juloos">Juloos</button>
+      <button class="event-btn" data-event="milad">Milad</button>
+    </div>
+  
+    <div class="event-section active" id="wedding">
+      <p class="price">Price: 2000</p>
+    </div>
+
+    <div class="event-section" id="haldi">
+      <p class="price">Price: 2000</p>
+    </div>
+
+    <div class="event-section" id="juloos">
+      <p class="price">Price: 5000</p>
+    </div>
+
+    <div class="event-section" id="milad">
+      <p class="price">Price: 2000</p>
+    </div>
+  
+    <form id="booking-form">
+      <input type="text" placeholder="Address" required>
+      <input type="text" placeholder="Your Name" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="text" placeholder="Purpose" required>
+      
+      <div class="payment-options">
+        <label><input type="radio" name="payment" value="cash" checked> Cash payment </label>
+      </div>
+  
+      <button type="submit">Confirm Booking</button>
+      <form id="booking-form" action="submit_booking.php" method="POST"></form>
+      <input type="hidden" id="event_type" name="event_type" value="wedding">
+      <input type="hidden" id="event_date" name="event_date">
+    </form>
+  
+    <div id="confirmation-message" style="display:none;">
+      <p>You have successfully booked the date!</p>
+      <button onclick="cancelEvent()">Cancel Event</button>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.event-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons and sections
+        document.querySelectorAll('.event-btn, .event-section').forEach(el => {
+          el.classList.remove('active');
+        });
+        
+        // Add active class to clicked button and corresponding section
+        btn.classList.add('active');
+        const eventType = btn.dataset.event;
+        document.getElementById(eventType).classList.add('active');
+      });
+    });
+  
+    document.getElementById('booking-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Here you would typically send data to server
+      document.getElementById('confirmation-message').style.display = 'block';
+      document.getElementById('booking-form').reset();
+    });
+  
+    function cancelEvent() {
+      if(confirm('Are you sure you want to cancel this event?')) {
+        document.getElementById('confirmation-message').style.display = 'none';
+        // Implement cancellation logic
+      }
+    }
+  </script>
+
+<button class="homepage-button" onclick="goToHomepage()">Go to Homepage</button>
+</section>
+
+<script>
+    document.getElementById("enrollmentForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const whatsappNumber = document.getElementById('whatsappNumber').value;
+        const course = document.getElementById('course').value;
+
+        if (name && whatsappNumber && course) {
+            document.getElementById("successMessage").style.display = "block";
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById("successMessage").style.display = "none";
+            }, 5000);
+        } else {
+            alert('Please fill out all fields correctly.');
+        }
+    });
+
+    // Function to redirect to homepage
+    function goToHomepage() {
+        window.location.href = "homepage.html"; // Replace with your homepage URL
+    }
+</script>
+
+</body>
+</html>

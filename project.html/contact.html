@@ -1,0 +1,83 @@
+<section id="contact" style="text-align: center; padding: 50px; background: url('your-islamic-pattern.jpg') no-repeat center center/cover; color: #fff;">
+    <h2 style="font-family: 'Amiri', serif; font-size: 2.5rem; margin-bottom: 20px;">
+        <span style="display: block; font-size: 1.2rem;">تواصل معنا</span>  
+        Contact With Us
+    </h2>
+    <p style="font-style: italic; font-size: 1.2rem;">"Indeed, the best of people are those who are most beneficial to others." - Hadith</p>
+    
+    <form id="contactForm" style="max-width: 500px; margin: auto; background: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
+        <input type="text" id="name" placeholder="Your Name" required style="width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px;">
+        <input type="email" id="email" placeholder="Your Email" required style="width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px;">
+        <textarea id="message" rows="5" placeholder="Your Message" required style="width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px;"></textarea>
+        <button type="submit" style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1rem;">Send Message</button>
+    </form>
+
+    <p id="successMessage" style="display: none; font-size: 1.5rem; color: #28a745; margin-top: 20px; font-weight: bold;">Jazakallah Khair 😊</p>
+
+    <!-- Feedback Display Section -->
+    <div id="feedbackDisplay" style="max-width: 800px; margin: 50px auto; background: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
+        <h3 style="font-family: 'Amiri', serif; font-size: 2rem; margin-bottom: 20px;">Visitor Feedback</h3>
+        <div id="feedbackList"></div>
+    </div>
+</section>
+
+<script>
+    // Function to load feedback from local storage
+    function loadFeedback() {
+        const feedbackList = document.getElementById("feedbackList");
+        const feedbackData = JSON.parse(localStorage.getItem("feedback")) || [];
+
+        feedbackList.innerHTML = ""; // Clear existing feedback
+
+        feedbackData.forEach((feedback) => {
+            const feedbackItem = document.createElement("div");
+            feedbackItem.style.marginBottom = "20px";
+            feedbackItem.style.padding = "10px";
+            feedbackItem.style.borderBottom = "1px solid #444";
+            feedbackItem.innerHTML = `
+                <p style="font-size: 1.2rem; font-weight: bold;">${feedback.name}</p>
+                <p style="font-size: 1rem; color: #ccc;">${feedback.email}</p>
+                <p style="font-size: 1rem;">${feedback.message}</p>
+            `;
+            feedbackList.appendChild(feedbackItem);
+        });
+    }
+
+    // Load feedback when the page loads
+    window.onload = loadFeedback;
+
+    // Handle form submission
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent actual form submission
+
+        // Get form values
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        // Create feedback object
+        const feedback = {
+            name: name,
+            email: email,
+            message: message
+        };
+
+        // Retrieve existing feedback from local storage
+        const feedbackData = JSON.parse(localStorage.getItem("feedback")) || [];
+
+        // Add new feedback to the array
+        feedbackData.push(feedback);
+
+        // Save updated feedback array back to local storage
+        localStorage.setItem("feedback", JSON.stringify(feedbackData));
+
+        // Reload feedback to display the new entry
+        loadFeedback();
+
+        // Show success message
+        document.getElementById("successMessage").style.display = "block";
+
+        // Reset form fields
+        this.reset();
+    });
+</script>

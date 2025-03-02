@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Date - Gous e Azam Foundation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Amiri', serif;
+            background-color: #f0f0f0;
+            color: #2E8B57; /* Green color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('arabesque-pattern.png');
+            background-size: cover;
+        }
+
+        .book-date-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .book-date-section h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2E8B57;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .calendar div {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            transition: none; /* Disable transitions */
+        }
+
+        .calendar div.booked {
+            background-color: #ffcccc; /* Light red for booked dates */
+            cursor: not-allowed;
+        }
+
+        .calendar div.empty {
+            background-color: #ccffcc; /* Light green for empty dates */
+        }
+
+        /* Disable hover effects */
+        .calendar div.empty:hover {
+            background-color: #ccffcc; /* Keep the same color on hover */
+        }
+
+        .calendar-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-navigation button {
+            background-color: #2E8B57;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .calendar-navigation button:hover {
+            background-color: #1f5e3d;
+        }
+
+        #bookDateButton {
+            display: none; /* Initially hidden */
+            background-color: #2E8B57;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        #bookDateButton:hover {
+            background-color: #1f5e3d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Book Your Date Section -->
+    <div class="book-date-section">
+        <h1>Book Your Date</h1>
+        <div class="calendar-navigation">
+            <button id="prevMonth">Previous</button>
+            <h2 id="currentMonthYear"></h2>
+            <button id="nextMonth">Next</button>
+        </div>
+        <div class="calendar" id="calendar">
+            <!-- Calendar dates will be dynamically generated here -->
+        </div>
+        <button id="bookDateButton">Book Date</button>
+    </div>
+
+    <script>
+        // Sample booked dates (you can replace this with data from a backend)
+        const bookedDates = [5, 10, 15, 20]; // Example: Dates 5, 10, 15, and 20 are booked
+
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        // Function to generate the calendar
+        function generateCalendar(month, year) {
+            const calendar = document.getElementById('calendar');
+            const currentMonthYear = document.getElementById('currentMonthYear');
+            const firstDayOfMonth = new Date(year, month, 1);
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const startingDay = firstDayOfMonth.getDay(); // 0 (Sunday) to 6 (Saturday)
+
+            // Set the current month and year in the header
+            currentMonthYear.textContent = `${new Intl.DateTimeFormat('en-US', { month: 'long' }).format(firstDayOfMonth)} ${year}`;
+
+            let calendarHTML = '';
+
+            // Fill in the blanks for the previous month
+            for (let i = 0; i < startingDay; i++) {
+                calendarHTML += `<div></div>`;
+            }
+
+            // Fill in the dates for the current month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                if (bookedDates.includes(day)) {
+                    calendarHTML += `<div class="booked">${day}</div>`; // Booked date
+                } else {
+                    calendarHTML += `<div class="empty">${day}</div>`; // Empty date
+                }
+            }
+
+            calendar.innerHTML = calendarHTML;
+
+            // Add event listeners to empty dates
+            const emptyDates = document.querySelectorAll('.calendar .empty');
+            emptyDates.forEach(date => {
+                date.addEventListener('click', () => {
+                    const selectedDate = new Date(year, month, parseInt(date.textContent));
+                    // Show the "Book Date" button
+                    document.getElementById('bookDateButton').style.display = 'block';
+                });
+            });
+        }
+
+        // Navigation event listeners
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+
+        // Redirect to login.html when "Book Date" button is clicked
+        document.getElementById('bookDateButton').addEventListener('click', () => {
+            window.location.href = "login.html";
+        });
+
+        // Generate the calendar on page load
+        generateCalendar(currentMonth, currentYear);
+    </script>
+</body>
+</html>

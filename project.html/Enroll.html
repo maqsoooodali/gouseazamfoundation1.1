@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrollment Section</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Amiri', serif;
+            background: white ; 
+            color: #4CAF50;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .enrollment-section {
+            background: #4CAF50(0, 0, 0, 0.6);
+            padding: 40px;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 0 15px #4CAF50(255, 215, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
+        h1 span {
+            display: block;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        p {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        input {
+            background: white;
+            color: #4CAF50;
+        }
+
+        #whatsappNumber {
+            background: white;
+            color: black;
+        }
+
+        button {
+            background: lightblue;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: #4CAF50;
+            transform: scale(1.05);
+        }
+
+        #successMessage {
+            display: none;
+            font-size: 1.5rem;
+            color: greenyellow;
+            margin-top: 20px;
+            font-weight: bold;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Validation styling */
+        input:invalid {
+            border: 2px solid #4CAF50;
+        }
+
+        input:valid {
+            border: 2px solid green;
+        }
+
+        /* Homepage button styling */
+        .homepage-button {
+            margin-top: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        .homepage-button:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <section class="enrollment-section">
+        <h1>
+            <span></span>
+            Enroll Now
+        </h1>
+        <p>Learn how to play an instrument or how to sing with our expert instructors.</p>
+        <form id="enrollmentForm">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="text" id="whatsappNumber" name="whatsappNumber" 
+                   placeholder="Enter WhatsApp Number (e.g., +1234567890)"
+                   pattern="^\+?[0-9]{8,15}$" 
+                   title="Please enter a valid WhatsApp number (8-15 digits, optional +)"
+                   required>
+            <select id="course" name="course" required>
+                <option value="">Select a Course</option>
+                <option value="instrument">How to Play an Instrument</option>
+                <option value="singing">How to Sing</option>
+            </select>
+            <button type="submit">Apply Now</button>
+        </form>
+        <p id="successMessage">✨ JazakAllah Khair! Our teacher will reach out to you, InshaAllah. 😊</p>
+        
+        <!-- Homepage Button -->
+        <button class="homepage-button" onclick="goToHomepage()">Go to Homepage</button>
+    </section>
+
+    <script>
+        document.getElementById("enrollmentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const whatsappNumber = document.getElementById('whatsappNumber').value;
+            const course = document.getElementById('course').value;
+
+            if (name && whatsappNumber && course) {
+                document.getElementById("successMessage").style.display = "block";
+                this.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById("successMessage").style.display = "none";
+                }, 5000);
+            } else {
+                alert('Please fill out all fields correctly.');
+            }
+        });
+
+        // Function to redirect to homepage
+        function goToHomepage() {
+            window.location.href = "homepage.html"; // Replace with your homepage URL
+        }
+    </script>
+</body>
+</html>

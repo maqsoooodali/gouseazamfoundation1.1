@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Events - Gous-e-Azam Foundation</title>
+    <style>
+        body {
+            font-family: 'Amiri', serif; /* Islamic calligraphy-inspired font */
+            background-color: white;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2E8B57; /* Light green color */
+            margin-top: 20px;
+        }
+        .event-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .event-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 15px;
+            width: 200px; /* Smaller card size */
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .event-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .event-date {
+            font-size: 1rem;
+            color: #2E8B57; /* Light green color */
+            margin: 10px 0;
+        }
+        .event-description {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .btn {
+            background-color: #2E8B57; /* Light green color */
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #3CB371; /* Slightly darker green on hover */
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+        .modal-content img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .modal-content .event-date {
+            font-size: 1.2rem;
+            color: #2E8B57;
+        }
+        .modal-content .event-description {
+            font-size: 1rem;
+            color: #555;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+        }
+    </style>
+    <!-- Add Google Fonts for Islamic calligraphy style -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Past Events</h1>
+    <div class="event-container">
+        
+        <!-- Event 1 -->
+        <div class="event-card" onclick="openModal('event1.jpg', '15th Ramadan 1444', 'Annual Iftar Gathering at Gous-e-Azam Foundation.')">
+            <img src="event1.jpg" alt="Event 1">
+            <div class="event-date">15th Ramadan 1444</div>
+            <div class="event-description">Annual Iftar Gathering...</div>
+            <button class="btn">View More</button>
+        </div>
+
+        <!-- Event 2 -->
+        <div class="event-card" onclick="openModal('event2.jpg', '12th Rabi-ul-Awwal 1444', 'Eid Milad-un-Nabi (SAW) Celebration.')">
+            <img src="" alt="Event 2">
+            <div class="event-date">12th Rabi-ul-Awwal 1444</div>
+            <div class="event-description">Eid Milad-un-Nabi...</div>
+            <button class="btn">View More</button>
+        </div>
+
+        <!-- Event 3 -->
+        <div class="event-card" onclick="openModal('event3.jpg', '10th Muharram 1444', 'Ashura Day Seminar and Majlis.')">
+            <img src="event3.jpg" alt="Event 3">
+            <div class="event-date">10th Muharram 1444</div>
+            <div class="event-description">Ashura Day Seminar...</div>
+            <button class="btn">View More</button>
+        </div>
+        <!-- Add more events as needed -->
+    </div>
+
+    <!-- Modal -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Event Image">
+            <div id="modalDate" class="event-date"></div>
+            <div id="modalDescription" class="event-description"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to open the modal
+        function openModal(imageSrc, date, description) {
+            const modal = document.getElementById('eventModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalDate = document.getElementById('modalDate');
+            const modalDescription = document.getElementById('modalDescription');
+
+            modalImage.src = imageSrc;
+            modalDate.textContent = date;
+            modalDescription.textContent = description;
+
+            modal.style.display = 'flex';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById('eventModal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside the modal content
+        window.onclick = function(event) {
+            const modal = document.getElementById('eventModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
