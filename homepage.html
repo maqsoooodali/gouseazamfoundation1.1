@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gous e Azam Foundation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+  <style>
+    /* Islamic Style Theme */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Amiri', serif;
+      background: url('https://www.toptal.com/designers/subtlepatterns/uploads/arabesque.png');
+      color: #2c3e50;
+    }
+
+    header {
+      background: linear-gradient(45deg, #0a3d62, #079992);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      position: relative;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: whitesmoke ; 
+    }
+    
+    header h2 {
+      color: whitesmoke ;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 25px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2em;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #f6b93b;
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 80px 20px;
+      margin: 0px 0px;
+      max-width: 1250px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: '  المدد یا غوثِ اعظم';
+      font-family: 'Amiri', serif;
+      position: absolute;
+      font-size: 250px;
+      opacity: 0.1;
+      right: -50px;
+      top: -50px;
+      transform: rotate(15deg);
+      color: #0a3d62;
+    }
+
+    #home {
+      background: linear-gradient(rgba(10, 61, 98, 0.8), rgba(7, 153, 146, 0.8)),
+                  url('https://images.unsplash.com/photo-1580338453779-8b1cda2d6b38?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      border-radius: 0;
+      margin-top: 0;
+    }
+
+    .service-card {
+      background: white;
+      padding: 30px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Amiri', serif;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #079992;
+      outline: none;
+    }
+
+    button {
+      background: linear-gradient(45deg, #0a3d62, #079992);
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Amiri', serif;
+      color: #0a3d62;
+    }
+
+    .arabic-decoration {
+      font-family: 'Amiri', serif;
+      font-size: 2.5em;
+      color: #f6b93b;
+      margin: 20px 0;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between; /* Align buttons with space between */
+      gap: 60px;
+      padding: 20px;
+    }
+
+    .custom-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      width: auto;
+    }
+
+    .custom-button a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Align buttons as per your request */
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .button-container .custom-button:first-child {
+      margin-right: auto; /* Push "Book Your Program" to the left */
+    }
+
+    .button-container .custom-button:nth-child(2) {
+      margin: 0 auto; /* Center "Enroll" */
+    }
+
+    .button-container .custom-button:last-child {
+      margin-left: auto; /* Push "About Us" to the right */
+    }
+    body {
+          font-family: 'Amiri', serif; /* Islamic calligraphy-inspired font */
+          background-color: white;
+          color: #333;
+          margin: 0;
+          padding: 0;
+      }
+      h1 {
+          text-align: center;
+          font-size: 2.5rem;
+          color: #2E8B57; /* Light green color */
+          margin-top: 20px;
+      }
+      .event-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 20px;
+      }
+      .event-card {
+          background-color: #f9f9f9;
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          margin: 10px;
+          padding: 15px;
+          width: 200px; /* Smaller card size */
+          text-align: center;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+      }
+      .event-card img {
+          width: 100%;
+          border-radius: 10px;
+      }
+      .event-date {
+          font-size: 1rem;
+          color: #2E8B57; /* Light green color */
+          margin: 10px 0;
+      }
+      .event-description {
+          font-size: 0.9rem;
+          color: #555;
+      }
+      .btn {
+          background-color: #2E8B57; /* Light green color */
+          color: white;
+          padding: 8px 16px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 0.9rem;
+          margin-top: 10px;
+      }
+      .btn:hover {
+          background-color: #3CB371; /* Slightly darker green on hover */
+      }
+
+      /* Modal Styles */
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          justify-content: center;
+          align-items: center;
+      }
+      .modal-content {
+          background-color: white;
+          padding: 20px;
+          border-radius: 10px;
+          max-width: 600px;
+          width: 90%;
+          text-align: center;
+          position: relative;
+      }
+      .modal-content img {
+          width: 100%;
+          border-radius: 10px;
+          margin-bottom: 15px;
+      }
+      .modal-content .event-date {
+          font-size: 1.2rem;
+          color: #2E8B57;
+      }
+      .modal-content .event-description {
+          font-size: 1rem;
+          color: #555;
+      }
+      .close-btn {
+          position: absolute;
+          top: 10px;
+          right: 15px;
+          font-size: 1.5rem;
+          color: #333;
+          cursor: pointer;
+      }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://mmg.whatsapp.net/v/t61.24694-24/401285095_704714558257034_7221438457528696150_n.jpg?ccb=1-7&_nc_sid=5a2cf7&_nc_ohc=E0ycG36_SNkQ7kNvgHFIWEn&_nc_zt=3&_nc_ht=mmg.whatsapp.net&_nc_gid=A8Emu0XGZMF4L0qp9DFtGqr&oh=01_Q5AaIHI0wBWvQ_IOpA2Gmp6uLUhUEORxrppB5S05W7c8sU4M&oe=67D000C2" alt="Foundation Logo" class="logo">
+    <h1>غوث اعظم فاؤنڈیشن</h1>
+    <h2>GOUS-E-AZAM FOUNDATION</h2>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="contact.html">Feedback</a></li>
+        <li><a href="follow.html"><i class="fa fa-user" aria-hidden="true"></i> Follow Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home">
+    <div class="arabic-decoration">بسم الله الرحمن الرحيم</div>
+    <h2>Welcome to Gous e Azam Foundation</h2>
+    <h3><p>Preserving and promoting Islamic spiritual traditions through sacred arts</p></h3>
+  </section>
+
+  <section id="services">
+    <h2>Our Sacred Services</h2>
+    <div class="service-card">
+      <h3>Hamd-e-Paak & Nasheed Performances</h3>
+      <p>Experience the divine through soulful spiritual performances</p>
+    </div>
+    <div class="service-card">
+      <h3>Naat Sharif & Quran paak recitations</h3>
+      <p>Sending Durood sharif on beloved Prophet Muhammadﷺ</p>
+    </div>
+    <div class="service-card">
+      <h3>Traditional Instrumental Recitals</h3>
+      <p>Authentic renditions using traditional Islamic instruments</p>
+    </div>
+    <div class="service-card">
+      <h3>Teaching how to perform</h3>
+      <p>Teaching how to play instruments and how to perform</p>
+    </div>
+  </section>
+
+  <div class="button-container">
+    <button class="custom-button">
+      <a href="about us .html">About Us</a>
+    </button>
+    <button class="custom-button">
+      <a href="bookdate.html">Book Your Program</a>
+    </button>
+    <button class="custom-button">
+      <a href="Enroll.html">Enroll</a>
+    </button>
+  </div>
+
+
+  <h1>Past Events</h1>
+  <div class="event-container">
+      <!-- Event 1 -->
+      <div class="event-card" onclick="openModal('event1.jpg', '15th Ramadan 1444', 'Annual Iftar Gathering at Gous-e-Azam Foundation.')">
+          <img src="./asset/event1.png" alt="Event 1">
+          <div class="event-date">15th Ramadan 1444</div>
+          <div class="event-description">Annual Iftar Gathering...</div>
+          <button class="btn">View More</button>
+      </div>
+      <!-- Event 2 -->
+      <div class="event-card" onclick="openModal('event2.jpg', '12th Rabi-ul-Awwal 1444', 'Eid Milad-un-Nabi (SAW) Celebration.')">
+          <img src="./asset/event2.jpg" alt="Event 2">
+          <div class="event-date">12th Rabi-ul-Awwal 1444</div>
+          <div class="event-description">Eid Milad-un-Nabi...</div>
+          <button class="btn">View More</button>
+      </div>
+      <!-- Event 3 -->
+      <div class="event-card" onclick="openModal('event3.jpg', '10th Muharram 1444', 'Ashura Day Seminar and Majlis.')">
+          <img src="./asset/event3.jpg" alt="Event 3">
+          <div class="event-date">10th Muharram 1444</div>
+          <div class="event-description">Ashura Day Seminar...</div>
+          <button class="btn">View More</button>
+      </div>
+      <!-- Add more events as needed -->
+  </div>
+
+  <!-- Modal -->
+  <div id="eventModal" class="modal">
+      <div class="modal-content">
+          <span class="close-btn" onclick="closeModal()">&times;</span>
+          <img id="modalImage" src="" alt="Event Image">
+          <div id="modalDate" class="event-date"></div>
+          <div id="modalDescription" class="event-description"></div>
+      </div>
+  </div>
+
+  <script>
+      // Function to open the modal
+      function openModal(imageSrc, date, description) {
+          const modal = document.getElementById('eventModal');
+          const modalImage = document.getElementById('modalImage');
+          const modalDate = document.getElementById('modalDate');
+          const modalDescription = document.getElementById('modalDescription');
+
+          modalImage.src = imageSrc;
+          modalDate.textContent = date;
+          modalDescription.textContent = description;
+
+          modal.style.display = 'flex';
+      }
+
+      // Function to close the modal
+      function closeModal() {
+          const modal = document.getElementById('eventModal');
+          modal.style.display = 'none';
+      }
+
+      // Close modal when clicking outside the modal content
+      window.onclick = function(event) {
+          const modal = document.getElementById('eventModal');
+          if (event.target === modal) {
+              modal.style.display = 'none';
+          }
+      }
+  </script>
+
+  <script src="javascript"></script>
+ 
+</body>
+</html>
